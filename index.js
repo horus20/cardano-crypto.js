@@ -560,7 +560,7 @@ async function paperWalletUnscrambleStrings(passphrase, mnemonic) {
 async function xpubToHdPassphrase(xpub) {
   validateBuffer(xpub, 64)
 
-  return pbkdf2(xpub, 'address-hashing', 500, 32, 'sha512')  
+  return pbkdf2(xpub, 'address-hashing', 500, 32, 'sha512')
 }
 
 function packAddress(derivationPath, xpub, hdPassphrase, derivationScheme) {
@@ -626,11 +626,11 @@ function isValidAddress(address) {
     // we strip the 24 CBOR data taga by taking the "value" attribute from the "Tagged" object
     const addressDataEncoded = addressAsArray[0].value
     const crc32Checksum = addressAsArray[1]
-    
+
     if (crc32Checksum !== crc32(addressDataEncoded)) {
       return false
     }
-    
+
   } catch (e) {
     return false
   }
@@ -676,6 +676,7 @@ module.exports = {
   sign,
   verify,
   walletSecretFromMnemonic,
+  walletSecretFromMnemonicV1,
   decodePaperWalletMnemonic,
   xpubToHdPassphrase,
   packAddress,
